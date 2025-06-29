@@ -8,6 +8,21 @@ return {
         return ""
       end,
     },
+    condition = function(buf)
+      local fn = vim.fn
+      if not vim.api.nvim_buf_is_valid(buf) then
+        return false
+      end
+
+      local filetype = vim.bo[buf].filetype
+
+      -- Exclude temp UIs
+      if filetype == "harpoon" or filetype == "TelescopePrompt" or filetype == "neo-tree" then
+        return false
+      end
+
+      return fn.getbufvar(buf, "&modifiable") == 1
+    end,
   },
   keys = {
     { "<leader>uv", "<cmd>ASToggle<CR>", desc = "Toggle autosave" },
