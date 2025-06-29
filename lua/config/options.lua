@@ -16,4 +16,4 @@ vim.o.laststatus = 0
 
 -- Disable whitespace characters globally
 vim.opt.list = false
-
+vim.g.lazyvim_picker = "snacks"
