@@ -33,3 +33,8 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move up", silent = true }
 -- Normal Mode: move current line
 vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down", silent = true })
 vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { desc = "Move line up", silent = true })
+
+-- mapping for opening neo-tree
+vim.keymap.set("n", "<leader>fe", function()
+  require("neo-tree.command").execute({ toggle = true, source = "filesystem" })
+end, { desc = "Force Neo-tree open", silent = true })
