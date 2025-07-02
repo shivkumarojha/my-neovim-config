@@ -24,8 +24,8 @@ return {
         path = "~/workspace/shiv-personal-vault/shiv-personal-vault",
       },
       {
-        name = "work",
-        path = "~/vaults/work",
+        name = "New Me",
+        path = "~/workspace/New_Me/",
       },
     },
 
