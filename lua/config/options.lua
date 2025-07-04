@@ -17,3 +17,7 @@ vim.o.laststatus = 0
 -- Disable whitespace characters globally
 vim.opt.list = false
 vim.g.lazyvim_picker = "snacks"
+
+-- ruby related
+vim.g.lazyvim_ruby_lsp = "ruby_lsp"
+vim.g.lazyvim_ruby_formatter = "rubocop"
