@@ -8,6 +8,8 @@ return {
       exclude = { -- add folder names here to exclude
         ".git",
         "node_modules",
+        "generated",
+        "migrations",
       },
       sources = {
         explorer = {
