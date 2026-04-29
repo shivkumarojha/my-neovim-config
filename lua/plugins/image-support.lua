@@ -19,6 +19,7 @@ return {
         "mkv",
         "webm",
         "pdf",
+        "epub",
       },
       force = false, -- try displaying the image, even if the terminal does not support it
       doc = {

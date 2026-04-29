@@ -9,7 +9,7 @@ return {
         ".git",
         "node_modules",
         "generated",
-        "migrations",
+        -- "migrations",
       },
       sources = {
         explorer = {
@@ -21,7 +21,7 @@ return {
               preset = "sidebar",
               preview = false,
               position = "right",
-              width = 25,
+              width = 35,
             },
             cycle = false,
           },
