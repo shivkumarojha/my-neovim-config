@@ -40,3 +40,29 @@ vim.keymap.set("n", "<leader>fe", function()
   require("neo-tree.command").execute({ toggle = true, source = "filesystem" })
 end, { desc = "Force Neo-tree open", silent = true })
 
+
+-- Fix buffer crash on fast typing + rapid formatting
+vim.keymap.set("n", "cf", function()
+  local bufnr = vim.api.nvim_get_current_buf()
+  -- 1. Safely freeze Treesitter highlighting on this buffer right before formatting
+  pcall(function()
+    vim.cmd("TSBufDisable highlight")
+  end)
+
+  -- 2. Run formatting synchronously to block background text collisions
+  local status, conform = pcall(require, "conform")
+  if status then
+    conform.format({
+      async = false,
+      timeout_ms = 1000,
+      lsp_fallback = true,
+    })
+  else
+    vim.lsp.buf.format({ async = false })
+  end
+
+  -- 3. Safely unfreeze Treesitter highlighting now that text is stable
+  pcall(function()
+    vim.cmd("TSBufEnable highlight")
+  end)
+end, { desc = "Synchronous safe format" })

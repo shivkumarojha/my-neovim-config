@@ -5,6 +5,7 @@ return {
   opts = {
     picker = {
       enabled = true,
+      cwd = true, -- Forces explorer to use the CWD of the current tab
       exclude = { -- add folder names here to exclude
         ".git",
         "node_modules",
@@ -13,6 +14,8 @@ return {
       },
       sources = {
         explorer = {
+          cwd = true, -- Forces explorer to use the CWD of the current tab
+          follow = true, -- Automatically scrolls to the current file in the sidebar
           auto_close = true,
           hidden = true,
           layout = {
