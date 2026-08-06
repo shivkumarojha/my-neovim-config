@@ -29,6 +29,13 @@ return {
                   enabled = "literals",
                   suppressWhenArgumentMatchesName = true,
                 },
+                suggest = {
+                  autoImports = true, -- Crucial for import suggestions
+                  completeFunctionCalls = true,
+                },
+                workspaceSymbols = {
+                  scope = "all", -- Forces it to search the whole project
+                },
                 parameterTypes = { enabled = true },
                 propertyDeclarationTypes = { enabled = true },
                 variableTypes = { enabled = false },
@@ -39,6 +46,11 @@ return {
                     location = "node_modules/next",
                   },
                 },
+              },
+            },
+            javascript = {
+              suggest = {
+                autoImports = true,
               },
             },
           },

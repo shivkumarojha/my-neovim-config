@@ -66,3 +66,21 @@ vim.keymap.set("n", "cf", function()
     vim.cmd("TSBufEnable highlight")
   end)
 end, { desc = "Synchronous safe format" })
+
+
+vim.keymap.set("n", "<leader>vi", function()
+  local tmp_file = "/tmp/nvim_screenshot_ref.png"
+  -- 1. Unpack clipboard data safely into tmp
+  local cp_result = os.execute("wl-paste --type image/png > " .. tmp_file .. " 2>&1")
+  if cp_result ~= 0 then
+    vim.notify("Clipboard error: Ensure you have an image copied!", vim.log.levels.ERROR)
+    return
+  end
+  -- 2. Run IMV visibly in background to trace binary missing traps
+  local imv_result = os.execute("imv " .. tmp_file .. " &")
+  if imv_result ~= 0 then
+    vim.notify("Sway/IMV fail: Try running 'imv " .. tmp_file .. "' in an external terminal.", vim.log.levels.WARN)
+  else
+    vim.notify("Image window triggered successfully!", vim.log.levels.INFO)
+  end
+end, { desc = "Launch Image Viewer Window" })
