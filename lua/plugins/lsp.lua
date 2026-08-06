@@ -2,16 +2,12 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
-
       inlay_hints = {
         enabled = false,
       },
-      -- make sure mason installs the server
       servers = {
         ---@type lspconfig.settings.tsgo
         tsgo = {
-          -- explicitly add default filetypes, so that we can extend
-          -- them in related extras
           filetypes = {
             "javascript",
             "javascriptreact",
@@ -20,8 +16,14 @@ return {
             "typescriptreact",
             "typescript.tsx",
           },
+          capabilities = {
+            workspace = {
+              didChangeConfiguration = { dynamicRegistration = false },
+            },
+          },
           settings = {
             typescript = {
+              -- 1. Inlay hints configuration block ends here
               inlayHints = {
                 enumMemberValues = { enabled = true },
                 functionLikeReturnTypes = { enabled = false },
@@ -29,22 +31,23 @@ return {
                   enabled = "literals",
                   suppressWhenArgumentMatchesName = true,
                 },
-                suggest = {
-                  autoImports = true, -- Crucial for import suggestions
-                  completeFunctionCalls = true,
-                },
-                workspaceSymbols = {
-                  scope = "all", -- Forces it to search the whole project
-                },
                 parameterTypes = { enabled = true },
                 propertyDeclarationTypes = { enabled = true },
                 variableTypes = { enabled = false },
-                tsdk = "node_modules/typescript/lib",
-                plugins = {
-                  {
-                    name = "next",
-                    location = "node_modules/next",
-                  },
+              },
+              -- 2. Suggestion block MUST be a sibling to inlayHints, not inside it
+              suggest = {
+                autoImports = true,
+                completeFunctionCalls = true,
+              },
+              workspaceSymbols = {
+                scope = "all", 
+              },
+              tsdk = "node_modules/typescript/lib",
+              plugins = {
+                {
+                  name = "next",
+                  location = "node_modules/next",
                 },
               },
             },
@@ -59,3 +62,4 @@ return {
     },
   },
 }
+
