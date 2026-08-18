@@ -5,6 +5,7 @@ return {
   opts = {
     picker = {
       enabled = true,
+      ignored = true,
       cwd = true, -- Forces explorer to use the CWD of the current tab
       exclude = { -- add folder names here to exclude
         ".git",
@@ -15,7 +16,7 @@ return {
         explorer = {
           cwd = true, -- Forces explorer to use the CWD of the current tab
           follow = true, -- Automatically scrolls to the current file in the sidebar
-          auto_close = true,
+          auto_close = false, -- automatically close the explorer
           hidden = true,
           layout = {
             finder = "explorer",
@@ -47,7 +48,8 @@ return {
     {
       "<leader>e",
       function()
-        Snacks.explorer.open()
+        Snacks.explorer() -- just focus on the explorer
+        -- Snacks.explorer.open() -- open hide explorer
       end,
       desc = "Open Snacks Picker",
     },

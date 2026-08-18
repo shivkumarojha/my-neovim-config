@@ -84,3 +84,6 @@ vim.keymap.set("n", "<leader>vi", function()
     vim.notify("Image window triggered successfully!", vim.log.levels.INFO)
   end
 end, { desc = "Launch Image Viewer Window" })
+
+-- Run the request under the cursor using <leader>r
+vim.keymap.set("n", "<leader>r", "<cmd>Rest run<CR>", { desc = "Run HTTP request" })
